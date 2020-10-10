@@ -1,4 +1,30 @@
 {
+  "author": {
+    "name": "Janes Roberto da Costa",
+    "email": "seu.email@email.com",
+    "url": "https://seu-site.com"
+  },
+  "homepage": "./",
+  "main": "public/electron.js",
+  "build": {
+    "appId": "com.seu-site.seu-app",
+    "productName": "MyApp",
+    "copyright": "Copyright © 2019 Seu Nome",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "compression": "store",
+    "win": {
+      "target": "portable"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
   "name": "electron-reactjs-1st-project",
   "version": "0.1.0",
   "private": true,
@@ -6,15 +32,30 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "electron-is-dev": "^1.2.0",
+    "ffmpeg-static": "^4.2.7",
+    "ffprobe-static": "^3.0.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "moment-duration-format": "^2.3.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-dropzone": "^11.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "styled-components": "^5.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "eject": "react-scripts eject",
+    "dev": "concurrently \" cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron public/electron.js\"",
+    "install-wsl": "npm install && npm uninstall electron && export npm_config_platform=win32 && npm install electron && unset npm_config_platform",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-build": "yarn build",
+    "electron-build": "electron-builder -w"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +71,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@rescripts/cli": "^0.0.14",
+    "@rescripts/rescript-env": "^0.0.12",
+    "concurrently": "^5.3.0",
+    "cross-env": "^7.0.2",
+    "electron": "^10.1.3",
+    "electron-builder": "^22.8.1",
+    "typescript": "^4.0.3",
+    "wait-on": "^5.2.0"
   }
 }
